@@ -1,30 +1,16 @@
-parameters:
-  - name: terraform_fmt
-    displayName: terraform_fmt
-    type: string
-  - name: terraform_tflint
-    displayName: terraform_tflint
-    type: string
-  - name: terraform_validate
-    displayName: terraform_validate
-    type: string
-  - name: terraform_tfsec
-    displayName: terraform_tfsec
-    type: string
-
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: "v1.74.1"
     hooks:
-      - id: ${{ parameters.terraform_fmt }}
+      - id: terraform_fmt
         args:
       - --args=-write=true
-      - id: ${{ parameters.terraform_tflint }}
+      - id: terraform_tflint
         args:
       - --args=-write=true
-      - id: ${{ parameters.terraform_validate }}
+      - id: terraform_validate
         args:
       - --args=-write=true
-      - id: ${{ parameters.terraform_tfsec }}
+      - id: terraform_tfsec
         args:
       - --args=-write=true
