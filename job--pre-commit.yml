@@ -1,4 +1,4 @@
-parameters:
+variables:
   ruby: '>= 2.4'
   python: '3.11'
 
@@ -12,10 +12,10 @@ jobs:
   steps:
   - task: UsePythonVersion@0
     inputs:
-      versionSpec: ${{ parameters.python }}
+      versionSpec: ${{ variables.python }}
   - task: UseRubyVersion@0
     inputs:
-      versionSpec: ${{ parameters.ruby }}
+      versionSpec: ${{ variables.ruby }}
 
   - script: |
       echo "##vso[task.setvariable variable=PY]$(python -VV)"
