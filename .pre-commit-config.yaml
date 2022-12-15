@@ -12,12 +12,6 @@ parameters:
     displayName: terraform_tfsec
     type: string
 
-variables:
-  terraform_fmt: terraform_fmt
-  terraform_tflint: terraform_tflint
-  terraform_validate: terraform_validate
-  terraform_tfsec: terraform_tfsec
-
 repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: "v1.74.1"
