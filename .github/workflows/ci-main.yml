@@ -20,6 +20,9 @@ jobs:
 
       - name: Run Snyk test
         run: snyk iac test etc/ components/ modules/ --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low        
+        with:
+          args: --dev --all-projects
+          command: monitor
 
       - name: run Snyk Code Test
         run: snyk code test
