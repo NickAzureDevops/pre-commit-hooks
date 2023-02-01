@@ -19,7 +19,7 @@ jobs:
         run: npm install -g snyk
 
       - name: Run Snyk test
-        run: snyk iac test etc/ components/ modules/ --severity-threshold=critical|high|medium
+        run: snyk iac test etc/ components/ modules/ --severity-threshold=critical --severity-threshold=high --severity-threshold=Medium         
             #  snyk iac test etc/ components/ modules/ --severity-threshold=high 
 
       - name: run Snyk Code Test
