@@ -5,6 +5,10 @@ on:
     branches:
     - main
 
+env:
+  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  # working_directory: etc/ components/ modules/ 
+
 jobs:
   snyk:
     runs-on: ubuntu-latest
@@ -16,5 +20,6 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
+          file: ./etc/ ./components/ ./modules/
           args: --dev --all-projects 
                 --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report 
