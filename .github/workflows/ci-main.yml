@@ -7,6 +7,7 @@ on:
 
 env:
   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  working_directory: etc/ components/ modules/ 
 
 jobs:
   snykScan:
@@ -17,8 +18,7 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
       - name: Run Snyk test
-        run: snyk iac test etc/ components/ modules/ --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low        
-            --dev --all-projects
-              monitor
+        run: snyk iac test ${{ env.working_directory }} --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low        
+             synk montior 
       - name: run Snyk Code Test
         run: snyk code test
