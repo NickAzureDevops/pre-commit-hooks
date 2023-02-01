@@ -5,6 +5,13 @@ on:
     branches:
     - main
 
+# inputs:
+#   working_directory:
+#     description: 'The directory to run the Snyk command in'
+#     required: false
+#     default: ./etc/ ./components/ ./modules/
+
+
 env:
   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   working_directory: ./etc/ ./components/ ./modules/
