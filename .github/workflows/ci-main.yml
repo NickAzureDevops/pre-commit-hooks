@@ -34,5 +34,4 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
-          file: ${{ env.working_directory }}
           args: --dev --all-projects --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report
