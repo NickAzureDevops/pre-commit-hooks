@@ -5,6 +5,9 @@ on:
     branches:
     - main
 
+env:
+  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
 jobs:
   snykScan:
     runs-on: ubuntu-latest
@@ -13,8 +16,9 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
       - name: Run Snyk test
-        run: snyk iac test etc/ components/ modules/ --severity-threshold=critical|high|medium
-            #  snyk iac test etc/ components/ modules/ --severity-threshold=high 
+              snyk iac test etc/ components/ modules/ --severity-threshold=critical --severity-threshold=high --severity-threshold=medium      
+        env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       - name: run Snyk Code Test
         run: snyk code test
 
