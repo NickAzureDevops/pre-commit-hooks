@@ -5,32 +5,22 @@ on:
     branches:
     - main
 
-jobs:
-  build:
+
+jobs: 
   snykScan:
     name: Snyk Scan
+    needs: terraform_plan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
-      - name: Run Snyk to check for vulnerabilities
-        uses: snyk/actions/node@master
-        runs: snyk iac test etc/ components/ modules/ --severity-threshold=medium 
+      - uses: actions/checkout@v2
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+      - name: Run Snyk test
+        run: snyk iac test etc/ components/ modules/ --severity-threshold=medium 
              snyk iac test etc/ components/ modules/ --severity-threshold=high 
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          command: monitor
 
-
-
-      # - name: Install Snyk CLI
-      #   run: npm install -g snyk
-
-      # - name: Run Snyk test
-      #   run: snyk iac test etc/ components/ modules/ --severity-threshold=medium 
-      #        snyk iac test etc/ components/ modules/ --severity-threshold=high 
-      # - name: run Snyk Code Test
-      #   run: snyk code test
 
   # terraform_plan:
   # name: build
