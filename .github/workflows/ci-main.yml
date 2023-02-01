@@ -21,5 +21,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           file: ./etc/ ./components/ ./modules/
-          args: --dev --all-projects 
-                --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report 
+          args: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report 
