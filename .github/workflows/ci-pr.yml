@@ -1,0 +1,73 @@
+name: ci-pr
+
+on:
+  push:
+    branches:
+    - main
+
+env:
+  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+jobs:
+  # pr-review:
+  #   name: ci-pr
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - name: Set version and tag
+  #       id: tag_version
+  #       uses: mathieudutour/github-tag-action@v5.6
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         tag_prefix: "" # Remove any prefix to ensure compatibility for all build types
+  #         pre_release_branches: ^((?!main).)*$
+
+  # terraform_plan:
+  #  name: ci-pr
+  #  runs-on: ubuntu-latest
+  #  steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v3
+        
+  #     - uses: pre-commit/action@v3.0.0
+  #       with: 
+  #         extra_args: terraform_fmt --all-files
+          
+  #     - uses: stefanzweifel/git-auto-commit-action@v4
+  #       with:
+  #         file_pattern: etc/* components/* modules/*
+    
+  snykScan:
+    name: Snyk Scan
+    needs: terraform_plan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+      - name: Run Snyk test
+        run: snyk iac test etc/ components/ modules/ --severity-threshold=medium 
+             snyk iac test etc/ components/ modules/ --severity-threshold=high 
+      - name: run Snyk Code Test
+        run: snyk code test
+
+generate_re:
+  name: create_release
+  runs-on: ubuntu-latest
+  steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        body: |
+          Changes in this Release
+          - First Change
+          - Second Change
+        draft: false
+        prerelease: false
