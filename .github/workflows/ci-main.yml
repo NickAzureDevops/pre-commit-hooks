@@ -7,7 +7,7 @@ on:
 
 env:
   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-  working_directory: etc/ components/ modules/ 
+  # working_directory: etc/ components/ modules/ 
 
 # jobs:
 #   snykScan:
