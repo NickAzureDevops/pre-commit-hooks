@@ -14,15 +14,11 @@ jobs:
     steps: 
       - name: Checkout
         uses: actions/checkout@v2
-
       - name: Install Snyk CLI
         run: npm install -g snyk
-
       - name: Run Snyk test
         run: snyk iac test etc/ components/ modules/ --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low        
-        with:
-          args: --dev --all-projects
-          command: monitor
-
+            --dev --all-projects
+              monitor
       - name: run Snyk Code Test
         run: snyk code test
