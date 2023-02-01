@@ -9,16 +9,29 @@ env:
   SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
   working_directory: etc/ components/ modules/ 
 
+# jobs:
+#   snykScan:
+#     runs-on: ubuntu-latest
+#     steps: 
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Install Snyk CLI
+#         run: npm install -g snyk
+#       - name: Run Snyk test
+#         run: snyk iac test ${{ env.working_directory }} --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report     
+#              synk montior 
+#       - name: run Snyk Code Test
+#         run: snyk code test
+
 jobs:
-  snykScan:
+  snyk:
     runs-on: ubuntu-latest
-    steps: 
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Install Snyk CLI
-        run: npm install -g snyk
-      - name: Run Snyk test
-        run: snyk iac test ${{ env.working_directory }} --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report     
-             synk montior 
-      - name: run Snyk Code Test
-        run: snyk code test
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          args: --dev --all-projects --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report
