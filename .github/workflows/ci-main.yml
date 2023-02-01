@@ -18,7 +18,7 @@ jobs:
       - name: Install Snyk CLI
         run: npm install -g snyk
       - name: Run Snyk test
-        run: snyk iac test ${{ env.working_directory }} --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low        
+        run: snyk iac test ${{ env.working_directory }} --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report     
              synk montior 
       - name: run Snyk Code Test
         run: snyk code test
