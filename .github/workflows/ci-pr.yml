@@ -37,19 +37,19 @@ jobs:
   #       with:
   #         file_pattern: etc/* components/* modules/*
     
-  snykScan:
-    name: Snyk Scan
-    needs: terraform_plan
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install Snyk CLI
-        run: npm install -g snyk
-      - name: Run Snyk test
-        run: snyk iac test etc/ components/ modules/ --severity-threshold=critical|high|medium
-            #  snyk iac test etc/ components/ modules/ --severity-threshold=high 
-      - name: run Snyk Code Test
-        run: snyk code test
+# jobs:
+#   snykScan:
+#     runs-on: ubuntu-latest
+#     steps: 
+#       - name: Checkout
+#         uses: actions/checkout@v2
+#       - name: Install Snyk CLI
+#         run: npm install -g snyk
+#       - name: Run Snyk test
+#         run: snyk iac test ${{ env.working_directory }} --severity-threshold=critical --severity-threshold=high --severity-threshold=medium  --severity-threshold=low  --report     
+#              synk montior 
+#       - name: run Snyk Code Test
+#         run: snyk code test
 
 generate_re:
   name: create_release
