@@ -7,11 +7,6 @@ on:
         type: string
         description: 'The severity of the vulnerability to report'
         required: false
-      working_directory:
-        type: string
-        description: 'The directory to run the Snyk command in'
-        required: false
-        default: ./etc/ ./components/ ./modules/  ./bootstrap/
       
 jobs:
   snyk:

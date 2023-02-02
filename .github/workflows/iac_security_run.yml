@@ -7,7 +7,7 @@ on:
         description: 'The directory to run the Snyk command in'
         required: true
         type: string
-        default: ./etc/ ./components/ ./modules/  ./bootstrap/
+        default: ./etc/ ./components/ ./modules/ 
       severity: 
         type: string
         description: 'The severity of the vulnerability to report'
