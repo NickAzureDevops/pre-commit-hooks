@@ -1,4 +1,4 @@
-name: Iac Security run
+name: "Iac Security run"
 
 on:
   workflow_call:
