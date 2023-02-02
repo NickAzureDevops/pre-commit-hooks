@@ -8,7 +8,7 @@ on:
 jobs:
   dev:
     uses: NickAzureDevops/pre-commit-hooks/.github/workflows/iac_security_run.yml@test-snyk
-    input: 
+    with: 
       working_directory: ${{ inputs.working_directory}}
       severity: ${{ inputs.severity}}
     secrets:
