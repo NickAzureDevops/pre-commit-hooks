@@ -6,11 +6,11 @@ on:
       severity: 
         type: string
         description: 'The severity of the vulnerability to report'
-        required: true
-        default: ${{ secrets.SNYK_TOKEN }}
+        required: false
+        default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
       
 jobs:
-  dev:
+  snyk:
     uses: NickAzureDevops/pre-commit-hooks/.github/workflows/iac_security_run.yml@test-snyk
     with: 
       working_directory: ${{ inputs.working_directory}}
