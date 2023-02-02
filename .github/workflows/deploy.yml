@@ -8,10 +8,7 @@ on:
         description: 'The severity of the vulnerability to report'
         required: true
         default: ${{ inputs.severity}}
-      working_directory:
-        type: string
-        description: 'The directory to run the Snyk command in'
-        required: false
+
       
 jobs:
   dev:
