@@ -12,7 +12,7 @@ jobs:
   snyk:
     uses: NickAzureDevops/pre-commit-hooks/.github/workflows/iac_security_run.yml@test-snyk
     with: 
-      working_directory: ${{ inputs.working_directory}}
+      working_directory: etc/ components/ modules/ bootstrap/
       severity: ${{ inputs.severity}} --report
     secrets:
       SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
