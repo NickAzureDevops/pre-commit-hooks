@@ -3,14 +3,16 @@ name: Iac Security run
 on:
   workflow_call:
     inputs:
-    working_directory:
-      description: 'The directory to run the Snyk command in'
-      required: true
-      default: ./etc/ ./components/ ./modules/  ./bootstrap/
-    severity: 
-      description: 'The severity of the vulnerability to report'
-      required: true
-      default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
+      working_directory:
+        description: 'The directory to run the Snyk command in'
+        required: true
+        type: string
+        default: ./etc/ ./components/ ./modules/  ./bootstrap/
+      severity: 
+        type: string
+        description: 'The severity of the vulnerability to report'
+        required: true
+        default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
     secrets:
       SNYK_TOKEN:
         description: 'Snyk token'
