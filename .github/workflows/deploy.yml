@@ -3,11 +3,10 @@ name: "deploy"
 on:
   workflow_dispatch:
     inputs:
-      severity: 
+      severity:
         type: string
         description: 'The severity of the vulnerability to report'
         required: false
-        default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
       
 jobs:
   snyk:
