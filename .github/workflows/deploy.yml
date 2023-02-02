@@ -14,7 +14,7 @@ jobs:
     uses: NickAzureDevops/pre-commit-hooks/.github/workflows/iac_security_run.yml@test-snyk
     with: 
       working_directory: etc/ components/ modules/ bootstrap/
-      severity: ${{ inputs.SNYK_TOKEN }}
+      severity: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
     secrets:
       SNYK_TOKEN: ${{ secrets.severity }}
   
