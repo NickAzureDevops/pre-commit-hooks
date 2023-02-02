@@ -2,11 +2,11 @@ name: "deploy"
 
 on:
   workflow_dispatch:
-    inputs:
-      severity:
-        type: string
-        description: 'The severity of the vulnerability to report'
-        required: false
+    # inputs:
+    #   severity:
+    #     type: string
+    #     description: 'The severity of the vulnerability to report'
+    #     required: false
       
 jobs:
   snyk:
