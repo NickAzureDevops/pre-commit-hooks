@@ -1,0 +1,16 @@
+name: "deploy"
+
+on:
+  push:
+    branches:
+      - test-snyk
+      
+jobs:
+  dev:
+    uses: NickAzureDevops/pre-commit-hooks/.github/workflows/iac_security_run@test-snyk
+    input: 
+      working_directory: ${{ inputs.working_directory}}
+      severity: ${{ inputs.severity}}
+    secrets:
+      SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+  

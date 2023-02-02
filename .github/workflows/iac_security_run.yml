@@ -1,0 +1,31 @@
+name: Iac Security run
+
+on:
+  workflow_call:
+    inputs:
+    working_directory:
+      description: 'The directory to run the Snyk command in'
+      required: true
+      default: ./etc/ ./components/ ./modules/  ./bootstrap/
+    severity: 
+      description: 'The severity of the vulnerability to report'
+      required: true
+      default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
+  secrets:
+    description: 'Snyk API token'
+    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+jobs:
+  snyk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v2
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/iac@master
+        continue-on-error: false 
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          file:  ${{ inputs.working_directory}}
+          args:  ${{ inputs.severity}} --report 
