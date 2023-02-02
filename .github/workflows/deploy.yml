@@ -8,12 +8,6 @@ on:
         description: 'The severity of the vulnerability to report'
         required: true
         default: ${{ secrets.SNYK_TOKEN }}
-      working_directory:
-        description: 'The directory to run the Snyk command in'
-        required: true
-        type: string
-        default: ./etc/ ./components/ ./modules/  ./bootstrap/
-      
       
 jobs:
   dev:
