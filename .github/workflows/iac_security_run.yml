@@ -17,9 +17,15 @@ on:
       SNYK_TOKEN:
         description: 'Snyk token'
         required: true
+
 jobs:
   snyk:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ inputs.path }}
+    # runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
