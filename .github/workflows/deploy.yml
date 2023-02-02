@@ -6,7 +6,7 @@ on:
       severity:
         type: string
         description: 'The severity of the vulnerability to report'
-        required: true
+        required: false
       
 jobs:
   snyk:
