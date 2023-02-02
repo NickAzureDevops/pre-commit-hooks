@@ -11,6 +11,7 @@ on:
         type: string
         description: 'The severity of the vulnerability to report'
         required: true
+        default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
     secrets:
       SNYK_TOKEN:
         description: 'Snyk token'
