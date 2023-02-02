@@ -11,10 +11,10 @@ on:
       description: 'The severity of the vulnerability to report'
       required: true
       default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
-  secrets:
-    description: 'Snyk API token'
-    SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
+    secrets:
+      SNYK_TOKEN:
+        description: 'Snyk token'
+        required: true
 jobs:
   snyk:
     runs-on: ubuntu-latest
