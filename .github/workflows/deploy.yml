@@ -3,12 +3,11 @@ name: "deploy"
 on:
   workflow_dispatch:
     inputs:
-      severity:
+      severity: 
         type: string
         description: 'The severity of the vulnerability to report'
         required: true
-        default: ${{ inputs.severity}}
-
+        default: ${{ secrets.SNYK_TOKEN }}
       
 jobs:
   dev:
