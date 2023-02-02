@@ -11,8 +11,8 @@ on:
       severity: 
         type: string
         description: 'The severity of the vulnerability to report'
-        required: true
-        default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium --report 
+        required: false
+        default: --severity-threshold=critical --severity-threshold=high --severity-threshold=medium
     secrets:
       SNYK_TOKEN:
         description: 'Snyk token'
@@ -31,4 +31,4 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           file: ${{ inputs.working_directory}}
-          args: ${{ inputs.severity}}
+          args: ${{ inputs.severity}} --report 
