@@ -5,8 +5,8 @@ on:
     secrets:
       AWS_REGION:
         required: true
-    outputs:
-      dev_auth: ${{ jobs.aws-github-authentication.outputs.dev_output }}
+    # outputs:
+    #   dev_auth: ${{ jobs.aws-github-authentication.outputs.dev_output }}
    
 env:
   AWS_REGION : eu-west-1
