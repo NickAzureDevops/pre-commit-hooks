@@ -5,8 +5,8 @@ on:
     secrets:
       AWS_REGION:
         required: true
-    # outputs:
-    #   dev_auth: ${{ jobs.aws-github-authentication.outputs.dev_output }}
+    outputs:
+      dev_auth: ${{ jobs.authentication.outputs.dev_output }}
    
 env:
   AWS_REGION : eu-west-1
@@ -16,7 +16,7 @@ permissions:
   contents: read    # This is required for actions/checkout
 
 jobs:
-  aws-github-authentication:
+  aws_authentication:
     runs-on: ubuntu-latest
     outputs:
       dev_output: ${{ steps.dev_authentication.outputs.dev_auth }}
@@ -28,6 +28,6 @@ jobs:
           aws-region: ${{ env.AWS_REGION }}       
   test:
     runs-on: ubuntu-latest
-    needs: aws-github-authentication
+    needs: aws_authentication
     steps:
-      - run: echo ${{needs.aws-github-authentication:.outputs.dev_output}}
+      - run: echo ${{needs.authentication:.outputs.dev_output}}
