@@ -31,9 +31,9 @@ jobs:
         run: |
           echo "output: ${{steps.dev_authentication.outputs.dev_output}}"
 
-  test:
-    runs-on: ubuntu-latest
-    needs: aws_authentication
-    steps:
-      - run: | 
-          echo ${{needs.aws_authentication:.outputs.dev_output}}
+  # test:
+  #   runs-on: ubuntu-latest
+  #   needs: aws_authentication
+  #   steps:
+  #     - run: | 
+  #         echo ${{needs.aws_authentication:.outputs.dev_output}}
